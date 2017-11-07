@@ -1,14 +1,14 @@
 {
-  "name": "react-scripts",
+  "name": "@automatastudios/react-scripts",
   "version": "1.0.17",
   "description": "Configuration and scripts for Create React App.",
-  "repository": "facebookincubator/create-react-app",
+  "repository": "automatastudios/create-react-app",
   "license": "MIT",
   "engines": {
     "node": ">=6"
   },
   "bugs": {
-    "url": "https://github.com/facebookincubator/create-react-app/issues"
+    "url": "https://github.com/automatastudios/create-react-app/issues"
   },
   "files": [
     "bin",
