@@ -133,10 +133,10 @@ module.exports = {
               eslintPath: require.resolve('eslint'),
               // @remove-on-eject-begin
               baseConfig: {
-                extends: [require.resolve('eslint-config-react-app')],
+                extends: [require.resolve('eslint-config-airbnb')],
               },
               ignore: false,
-              useEslintrc: false,
+              // useEslintrc: false,
               // @remove-on-eject-end
             },
             loader: require.resolve('eslint-loader'),
@@ -167,8 +167,8 @@ module.exports = {
             loader: require.resolve('babel-loader'),
             options: {
               // @remove-on-eject-begin
-              babelrc: false,
-              presets: [require.resolve('babel-preset-react-app')],
+              // babelrc: false,
+              presets: [require.resolve('babel-preset-airbnb')],
               // @remove-on-eject-end
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
