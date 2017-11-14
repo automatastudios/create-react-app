@@ -20,6 +20,48 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 
+// AUTOMATA
+// Our customized eslint options
+const eslintOptions = {
+  formatter: eslintFormatter,
+  eslintPath: require.resolve('eslint'),
+  baseConfig: {
+    extends: [require.resolve('eslint-config-airbnb')],
+    env: {
+      browser: true
+    },
+  },
+  rules: {
+    complexity: [
+      'warn',
+      11
+    ],
+    'no-case-declarations': 'warn',
+    'no-console': 'warn',
+    'react/jsx-filename-extension': [
+      'error',
+      {
+        'extensions': [
+          '.js',
+          '.jsx'
+        ]
+      }
+    ],
+    'react/jsx-no-bind': 'warn',
+    'react/no-array-index-key': 'warn',
+    'react/prefer-stateless-function': 'warn',
+    'react/prop-types': [
+      'error',
+      {
+        'skipUndeclared': true
+      }
+    ]
+  },
+  ignore: false,
+  useEslintrc: true,
+};
+
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = '/';
@@ -128,17 +170,7 @@ module.exports = {
         enforce: 'pre',
         use: [
           {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
-              // @remove-on-eject-begin
-              baseConfig: {
-                extends: [require.resolve('eslint-config-airbnb')],
-              },
-              ignore: false,
-              // useEslintrc: false,
-              // @remove-on-eject-end
-            },
+            options: eslintOptions,
             loader: require.resolve('eslint-loader'),
           },
         ],
