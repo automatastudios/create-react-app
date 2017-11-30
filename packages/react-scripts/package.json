@@ -1,6 +1,6 @@
 {
   "name": "@automatastudios/react-scripts",
-  "version": "1.0.17-beta-1",
+  "version": "1.0.17-beta.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": "automatastudios/create-react-app",
   "license": "MIT",
