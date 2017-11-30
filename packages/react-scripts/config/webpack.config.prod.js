@@ -21,6 +21,48 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 
+// AUTOMATA
+// Our customized eslint options
+const eslintOptions = {
+  formatter: eslintFormatter,
+  eslintPath: require.resolve('eslint'),
+  baseConfig: {
+    extends: [require.resolve('eslint-config-airbnb')],
+    env: {
+      browser: true
+    },
+  },
+  rules: {
+    complexity: [
+      'warn',
+      11
+    ],
+    'no-case-declarations': 'warn',
+    'no-console': 'warn',
+    'react/jsx-filename-extension': [
+      'error',
+      {
+        'extensions': [
+          '.js',
+          '.jsx'
+        ]
+      }
+    ],
+    'react/jsx-no-bind': 'warn',
+    'react/no-array-index-key': 'warn',
+    'react/prefer-stateless-function': 'warn',
+    'react/prop-types': [
+      'error',
+      {
+        'skipUndeclared': true
+      }
+    ]
+  },
+  ignore: false,
+  useEslintrc: true,
+};
+
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 const publicPath = paths.servedPath;
@@ -134,19 +176,7 @@ module.exports = {
         enforce: 'pre',
         use: [
           {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
-              // @remove-on-eject-begin
-              // TODO: consider separate config for production,
-              // e.g. to enable no-console and no-debugger only in production.
-              baseConfig: {
-                extends: [require.resolve('eslint-config-react-app')],
-              },
-              ignore: false,
-              useEslintrc: false,
-              // @remove-on-eject-end
-            },
+            options: eslintOptions,
             loader: require.resolve('eslint-loader'),
           },
         ],
@@ -174,8 +204,8 @@ module.exports = {
             loader: require.resolve('babel-loader'),
             options: {
               // @remove-on-eject-begin
-              babelrc: false,
-              presets: [require.resolve('babel-preset-react-app')],
+              // babelrc: false,
+              presets: [require.resolve('babel-preset-airbnb')],
               // @remove-on-eject-end
               compact: true,
             },
@@ -220,15 +250,7 @@ module.exports = {
                         ident: 'postcss',
                         plugins: () => [
                           require('postcss-flexbugs-fixes'),
-                          autoprefixer({
-                            browsers: [
-                              '>1%',
-                              'last 4 versions',
-                              'Firefox ESR',
-                              'not ie < 9', // React doesn't support IE8 anyway
-                            ],
-                            flexbox: 'no-2009',
-                          }),
+                          autoprefixer(),
                         ],
                       },
                     },
