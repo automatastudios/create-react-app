@@ -15,25 +15,46 @@ Much of this plan is based on [Maintaining a fork of create-react-app as an alte
 
 Initialize a Create React App as you would without any customizations
 
-1. Make sure to have create-react-app installed (`npm install -g create-react-app`)
+1. Make sure to have create-react-app installed (e.g. `npm install -g create-react-app`)
 2. Run `create-react-app my-app`
 
 Update dependencies to point to our customized copy of react-scripts
 
-3.
+NPM
+
+3. `npm uninstall react-scripts`
+4. `npm install --save-dev @automatastudios/react-scripts`
+
+YARN
+
+3. `yarn delete react-scripts`
+4. `yarn add --dev @automatastudios/react-scripts`
 
 
 NOTE: Ejecting from our custom react scripts may be untested and unstable. If you plan to eject for further customizations it may be wise to eject from the latest release from the upstream Facebook project.
 
 ## Contributing
 
-TODO: document contributions
 
-## Syncing from Upstream with Backstroke
+### Syncing from Upstream with Backstroke
 
 `automatastudios/create-react-app@master` should always mirror the upstream `facebookincubator/create-react-app@master`. To keep these in sync we've configured a bot via [backstroke](https://backstroke.co/) to submit PRs to the master branch in our project fork.
 
+### Updating `automata-react-scripts` branch with releases
+
 To then incorporate those updates in our `custom-react-scripts` branch we can rebase from master.
+
+
+IMPORTANT: Since we're only publishing a single pacakge from the create-react-app monorepo we need to be careful about dependencies. Therefore we should ONLY rebase against a release commit / version change so that we don't have `react-scripts` package dependencies that are ahead of other published packages. (Scneario: react-scripts on master is 14 commits ahead of the last published version and relies on features of react-dev-utils that have not yet been published)
+
+### Local development of `@automatastudios/react-scripts`
+
+TODO: document best way to set up a demo project / do local dev against and test react-scripts from git codebase
+
+### Publishing a new version of `@automatastudios/react-scripts`
+
+1. Increment the version number in package.json
+2. From the react-scripts folder `npm publish --access public`
 
 # Automata Customization & Opinions
 
