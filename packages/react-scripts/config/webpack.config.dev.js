@@ -167,6 +167,7 @@ module.exports = {
       // It's important to do this before Babel processes the JS.
       {
         test: /\.(js|jsx|mjs)$/,
+        exclude: [`${paths.appSrc}/registerServiceWorker.js`],
         enforce: 'pre',
         use: [
           {
